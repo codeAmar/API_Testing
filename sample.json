@@ -1,0 +1,114 @@
+// the structure of collection looks like :
+
+{
+    "author": "terry crews",
+    "copies": [
+        {
+            "editionDate": "12-13-2013",
+            "editionName": "first",
+            "issued": {
+                "isIssued": "true",
+                "issuedTo": "are we there yet",
+                "reserved": "false"
+            }
+        }
+    ],
+    "genre": "music",
+    "isbn": "213",
+    "publication": {
+        "cityPublished": "vancouver",
+        "date": "12-21-2012",
+        "publisher": "terry crews"
+    },
+    "title": "book that contain pizza"
+}
+
+
+
+
+// All of these queries are executed in httpie
+
+Home
+http :3000/
+
+Get Books //limit 10
+http :3000/books
+
+Get Books Id
+http :3000/books/12345
+
+Post Books
+echo '{"title":"book that contain beer", "isbn":"213", "author":"terry crews", "genre":"beer", "publication":{"date":"12-21-2012","publisher":"terry crews","cityPublished":"vancouver"},"copies":[{"editionName":"first","editionDate":"12-13-2013","issued":{"isIssued":"true","issuedTo":"are we there yet","reserved":"false"}}]}' | http POST :3000/books
+
+Update Books
+echo '{"title":"book that contain pizza", "isbn":"213", "author":"terry crews", "genre":"music", "publication":{"date":"12-21-2012","publisher":"terry crews","cityPublished":"vancouver"},"copies":[{"editionName":"first","editionDate":"12-13-2013","issued":{"isIssued":"true","issuedTo":"are we there yet","reserved":"false"}}]}' | http PUT :3000/books
+
+
+Delete Books
+http DELETE :3000/books/12345
+
+
+QUERY BOOKS
+
+    Genre Query
+    http  :3000/books/?genre="beer"
+
+    Title Query
+    http  :3000/books/?title="watermelon"
+
+    author Query
+    http  :3000/books/?author="terry crews"
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////
+IN this schema email has been made as unique index,
+although it is not commendable to make email as unique id,
+as my single user route , reveals the users personal email.
+which can be problematic.
+but, i guess for this exercise i can ignore that for now.
+// the structure of collection looks like :
+
+[
+    {
+        "_id": "597133b6e3c40518607addbf",
+        "booksBorrowed": [
+            {
+                "borrowed": "javascript",
+                "dueDate": "2013-12-13T08:00:00.000Z"
+            }
+        ],
+        "booksReserved": "java8",
+        "email": "rakesh@yahoo.com",
+        "lateFee": 500,
+        "name": "Rakesh"
+    }
+]
+
+
+
+// All of these queries are executed in httpie
+
+
+Get Users //limit 5
+http :3000/users
+
+Get Users Id
+http DELETE :3000/users/amarjotsingh90@yahoo.com
+
+Post Users
+echo '{ "email":"rakesh@yahoo.com","name":"Rakesh","booksReserved":"java8","booksBorrowed":[{"borrowed":"javascript","dueDate":"12-13-2013"}],"lateFee":"500"}' | http  :3000/users
+
+Update Users
+ echo '{ "email":"amarjotsingh90@yahoo.com","name":"amarjot singh","booksReserved":"node8","booksBorrowed":[{"borrowed":"javascript","dueDate":"12-13-2013"}],"lateFee":"100"}' | http PUT :3000/users
+
+Delete Users
+http DELETE :3000/users/amarjotsingh90@yahoo.com
+
+
+QUERY USERS
+
+    Late Fee Query
+    http GET :3000/users/?lateFee="all"
