@@ -11,4 +11,15 @@ server.connection({
 
 server.route(require('./routes'))
 
-server.start((err)=>{if (err) console.log('error while connecting :'+err)})
+// if(!module.parent){
+//   server.start(error =>{
+//     process.exit(1)
+//   })
+// }
+
+server.start((err)=>{
+  if (err) console.log('error while connecting :'+err)
+})
+
+
+module.exports = server;

@@ -43,7 +43,7 @@ async function deleteBooks(req,res){
   return res(bookToDelete).code(200)
 }
 async function queryBooks(req,res){
-  console.log(req.query);
+  // console.log(req.query);
   if(req.query.genre){
     let queryBooksResult = await models.students.find({"genre":req.query.genre})
     if(Object.keys(queryBooksResult)){

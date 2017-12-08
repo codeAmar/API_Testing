@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const joi = require('joi')
 const monk = require('monk')
-const db = monk(process.env.DB_URL)
+const db = monk('mongodb://amarjotsingh:pass@localhost:27017/admin')
 
 db.then((err)=>{
   if(err) console.log('error :'+err);

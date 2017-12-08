@@ -4,6 +4,7 @@
   "description": "library api for wmdd 4935",
   "main": "index.js",
   "scripts": {
+    "eslint": "eslint",
     "test": "mocha --require babel-polyfill --require babel-register"
   },
   "babel": {
@@ -14,9 +15,16 @@
   "author": "amarjot",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
     "chai": "^4.1.2",
+    "code": "^5.1.2",
     "eslint": "^4.12.1",
     "eslint-config-google": "^0.9.1",
+    "inject-then": "^2.0.9",
+    "lab": "^15.1.2",
     "mocha": "^4.0.1"
   },
   "dependencies": {
