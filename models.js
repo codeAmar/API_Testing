@@ -4,9 +4,12 @@ const joi = require('joi')
 const monk = require('monk')
 const db = monk('mongodb://amarjotsingh:pass@localhost:27017/admin')
 
-db.then((err)=>{
-  if(err) console.log('error :'+err);
-  console.log('connected : db');
+db.then((db,err)=>{
+  // console.log(db);
+  if(err){
+    // console.log('error :'+err);
+  } 
+  // console.log('connected : db');
 
 })
 
@@ -56,7 +59,8 @@ module.exports = {
   students:students,
   bookSchema:bookSchema,
   users:users,
-  usersSchema:usersSchema
+  usersSchema:usersSchema,
+  db:db
 }
 
 

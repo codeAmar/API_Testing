@@ -27,8 +27,10 @@ async function getBooks(req,res){
 }
 async function getBooksId(req,res){
   let typicalBook = await models.students.find({"isbn":req.params.isbn})
-  return res(typicalBook).code(200)
-
+  if(typicalBook && typicalBook.length){
+    return res(typicalBook).code(200)
+  }
+  return res(typicalBook).code(400)
 }
 async function postBooks(req,res){
   let newBook = await models.students.insert(req.payload)
@@ -36,12 +38,19 @@ async function postBooks(req,res){
 }
 async function updateBooks(req,res){
   let bookToUpdate = await models.students.findOneAndUpdate({"isbn":req.payload['isbn']},{$set:req.payload})
-  return res(req.payload).code(200)
+  if(bookToUpdate){
+    return res(req.payload).code(200)
+  }
+  return res(bookToUpdate).code(400)
 }
 async function deleteBooks(req,res){
   let bookToDelete = await models.students.findOneAndDelete({"isbn":req.params.isbn})
-  return res(bookToDelete).code(200)
+  if(bookToDelete){
+    return res(bookToDelete).code(200)
+  }
+  return res(bookToDelete).code(400)
 }
+
 async function queryBooks(req,res){
   // console.log(req.query);
   if(req.query.genre){
@@ -53,7 +62,7 @@ async function queryBooks(req,res){
     }
   }
 
-  if(req.query.lateFee){
+  if(req.query.title){
     lesearchueryBooksResult = await models.students.find({"title":{$regex:req.query.title,$options:'i'}})
     if(Object.keys(lesearchueryBooksResult)){
       return res(queryBooksResult).code(200)
@@ -78,16 +87,25 @@ async function queryBooks(req,res){
 
 async function getAllUsers(req,res){
   let allUsers= await models.users.find({},{limit:5})
-  return res(allUsers)
+  if(allUsers && allUsers.length){
+    return res(allUsers).code(200)
+  }
+  return res(allUsers).code(400)
 }
 async function getSingleUser(req,res){
 /// make change so that each email is unique
   let allUsers= await models.users.find({"email":req.params.email})
-  return res(allUsers).code(200)
+  if(allUsers && allUsers.length){
+    return res(allUsers).code(200)  
+  }
+  return res(allUsers).code(400)
 }
 async function updateUser(req,res){
   let updatedUsers= await models.users.findOneAndUpdate({"email":req.payload['email']},{$set:req.payload})
-  return res(updatedUsers).code(200)
+  if(updatedUsers){
+    return res(updatedUsers).code(200)
+  }
+  return res(updatedUsers).code(400)
 }
 async function createUser(req,res){
   let newUser= await models.users.insert(req.payload)
@@ -96,7 +114,10 @@ async function createUser(req,res){
 }
 async function deleteUser(req,res){
   let delUser = await models.users.findOneAndDelete({"email":req.params.email})
-  return res(delUser).code(200)
+  if(delUser){
+    return res(delUser).code(200)
+  }
+  return res(delUser).code(400)
 }
 async function queryUsers(req,res){
   if(req.query.lateFee){
