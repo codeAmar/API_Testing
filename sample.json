@@ -96,7 +96,7 @@ Get Users //limit 5
 http :3000/users
 
 Get Users Id
-http DELETE :3000/users/amarjotsingh90@yahoo.com
+http :3000/users/amarjotsingh90@yahoo.com
 
 Post Users
 echo '{ "email":"rakesh@yahoo.com","name":"Rakesh","booksReserved":"java8","booksBorrowed":[{"borrowed":"javascript","dueDate":"12-13-2013"}],"lateFee":"500"}' | http  :3000/users

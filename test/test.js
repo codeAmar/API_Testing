@@ -12,7 +12,7 @@ should();
 server.register([
     {
         register:require('inject-then')
-}
+    }
 ])
 
 
@@ -44,7 +44,7 @@ const requestDefaults ={
     }
 }
 
-
+// This suite test for the successful status of server and database
 describe('Server and Database Status',function(){
 
     describe('Server Testing',function(){
@@ -82,7 +82,7 @@ describe('Server and Database Status',function(){
 })
 
 
-
+// This suite test for the Book Validations
 describe('Book Validation Rules',function(){
         
     describe('Joi and POST Method Validation',function(){
@@ -225,6 +225,7 @@ describe('Book Validation Rules',function(){
         
 })
 
+// This suite test for the user validations
 describe('User Validation Rules',function(){
     describe('GET requests',function(){
         it('should get all the users',function(){
